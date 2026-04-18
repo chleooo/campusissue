@@ -1,0 +1,142 @@
+.header {
+    width: 96.1%;
+    height: 5px;
+    background: #8b0000;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    img {
+        width: 33px;
+        height: 33px;
+        padding: 5px;
+    }
+    span {
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  background: #e9dfcf;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  width: 700px;
+  background: #d9d9d9;
+  border-radius: 15px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.header {
+  background: #8b0000;
+  color: white;
+  padding: 25px 30px;
+  
+
+  h2 {
+    margin: 0px;
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 13px;
+    margin: 5px 0 0 0;
+    margin-top: 2px 0 0 0;
+  }
+}
+
+.form {
+  padding: 20px;
+
+  label {
+    display: block;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #8b0000;
+  }
+
+  input, select, textarea {
+    width: 97%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    background: #cfcfcf;
+  }
+
+  textarea {
+    height: 80px;
+    resize: none;
+  }
+
+  .row {
+    display: flex;
+    gap: 10px;
+
+    div {
+      flex: 1;
+    }
+  }
+
+  .checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    margin-top: 15px;
+  }
+
+  small {
+    display: block;
+    font-size: 11px;
+    color: gray;
+    margin-top: 5px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    button {
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 48%;
+    }
+
+    .cancel {
+      background: transparent;
+      border: 1px solid #8b0000;
+      color: #8b0000;
+    }
+
+    .submit {
+      background: #8b0000;
+      color: white;
+      border: none;
+    }
+  }
+}
+
+.footer {
+  width: 97.4%;
+  background: #8b0000;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+}

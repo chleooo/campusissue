@@ -1,0 +1,38 @@
+<!-- HEADER -->
+<div class="top-header">
+  <div class="logo-section">
+    <img src="campus_issue.png" alt="logo">
+    <span>CampusCare</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+  <div class="card">
+
+    <div class="icon">✔</div>
+
+    <h1>Report Received</h1>
+
+    <p>
+      Your issue has been logged into the University maintenance grid.
+      You can track progress in real-time.
+    </p>
+
+    <div class="track">
+      <small>TRACKING ID</small>
+      <h2>{{ trackingId }}</h2>
+    </div>
+
+    <div class="buttons">
+      <button class="back" (click)="goBack()">Back</button>
+      <button class="new" (click)="newReport()">Report New Issue</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  c 2026 Campus Issues Report System - Improving Campus Life Together
+</div>

@@ -1,0 +1,122 @@
+.container {
+  display: flex;
+  height: 93vh;
+  background: #e9dfcf;
+  font-family: Arial, sans-serif;
+  gap: 30px;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px;
+
+  h1 {
+    font-size: 75px;
+    color: #8b0000;
+    margin-bottom: 1px;
+  }
+
+  p {
+    color: #6e6e6e;
+    max-width: 400px;
+    line-height: 1.5;
+  }
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    background: #cfcfcf;
+    border: none;
+    font-size: 14px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #8b0000;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: #d9d9d9;
+  padding: 30px;
+  border-radius: 15px;
+  width: 350px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  text-align: center;
+
+  h2 {
+    color: #5c0000;
+    margin-bottom: 5px;
+  }
+
+  small {
+    color: gray;
+  }
+
+  label {
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #8b0000;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    background: #cfcfcf;
+    box-sizing: border-box;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: #8b0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    box-sizing: border-box;
+  }
+
+  .signup span {
+  color: #7a2e2e;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.signup span:hover {
+  text-decoration: underline;
+}
+}
+
+.footer {
+  width: 97.4%;
+  background: #8b0000;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+}

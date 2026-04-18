@@ -1,0 +1,42 @@
+<div class="container">
+
+  <div class="left">
+    <h1>CampusCare</h1>
+    <p>
+      Report facilities, safety, or technology issues instantly.
+      Track progress, stay updated, and help maintain a safer,
+      cleaner learning environment for everyone.
+    </p>
+  </div>
+
+  <div class="right">
+    <div class="card">
+      <h2>Welcome Back</h2>
+      <small>Access the Campus Issues Portal</small>
+
+      <label>University Email</label>
+      <input type="email" [(ngModel)]="email" placeholder="user@university.edu.ph">
+
+      <label>Password</label>
+      <input type="password" [(ngModel)]="password" placeholder="••••••••">
+
+      <label>Login As</label>
+      <select [(ngModel)]="role">
+        <option value="">Select Role</option>
+        <option value="admin">Admin</option>
+        <option value="student">Student</option>
+      </select>
+
+      <button [disabled]="!email || !password || !role" (click)="goDashboard()">Log In</button>
+
+      <p class="signup">
+        Don’t have an account? <span routerLink="/register">Sign Up</span>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  © 2026 Campus Issues Report System – Improving Campus Life Together
+</div>

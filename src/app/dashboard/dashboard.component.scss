@@ -1,0 +1,178 @@
+.header {
+    width: 96.1%;
+    height: 60px;
+    background: #8b0000;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+
+    img {
+        width: 33px;
+        height: 33px;
+        padding: 5px;
+    }
+    span {
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+
+.container {
+  display: flex;
+  min-height: 85vh;
+  background: #e9dfcf;
+  font-family: Arial, sans-serif;
+}
+
+/* LEFT SIDE (PROFILE) */
+.left {
+  width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+.profile {
+  background: #d9d9d9;
+  border-radius: 15px;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  background: white;
+  border-radius: 50%;
+  margin: -50px auto 10px;
+}
+
+.profile h3 {
+  margin-top: 10px;
+  color: #5c0000;
+}
+
+.profile p {
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 15px;
+}
+
+.profile button {
+  width: 100%;
+  padding: 10px;
+  background: #8b0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* RIGHT SIDE */
+.right {
+  flex: 1;
+  padding: 40px;
+}
+
+/* TOP BAR */
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.top h1 {
+  color: #5c0000;
+}
+
+.top p {
+  color: gray;
+  font-size: 14px;
+}
+
+.new {
+  background: #8b0000;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* CARDS */
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #d9d9d9;
+  border-radius: 15px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+
+.card h4 {
+  color: #8b0000;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  color: #5c0000;
+  font-size: 16px;
+}
+
+.card p {
+  font-size: 13px;
+  color: gray;
+  margin: 10px 0;
+}
+
+.location {
+  display: block;
+  background: #efe4d2;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.status {
+  background: #7ed957;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 11px;
+}
+
+.bottom small {
+  color: gray;
+}
+
+/* FOOTER */
+.footer {
+  width: 97.4%;
+  background: #8b0000;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+}

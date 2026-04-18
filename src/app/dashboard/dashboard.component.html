@@ -1,0 +1,69 @@
+<div class="header">
+    <div class ="logo-section">
+        <img src="campus_issue.png" alt="logo">
+        <span>CampusCare</span>
+    </div>
+</div>
+
+<div class="container">
+
+  <!-- LEFT SIDE -->
+  <div class="left">
+    <div class="profile">
+      <div class="avatar"></div>
+      <h3>Chleo Monteza</h3>
+      <p>cmmonteza64178@liceo.edu.ph</p>
+
+      <button (click)="logout()">LOG OUT</button>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="right">
+
+    <div class="top">
+      <div>
+        <h1>Campus Issue Log</h1>
+        <p>Track the progress of issues you have submitted.</p>
+      </div>
+
+      <button routerLink="/new-report">+ New Report</button>
+    </div>
+
+    <div class="cards">
+
+      <!-- CARD 1 -->
+      <div class="card">
+        <h4>FACILITIES</h4>
+        <h2>Broken AC in Room 302</h2>
+        <p>The air conditioning unit is making a loud noise and not cooling.</p>
+        <span class="location">NAC Building, 3rd Floor</span>
+
+        <div class="bottom">
+          <span class="status">PUBLIC</span>
+          <small>01/25/2026</small>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="card">
+        <h4>SANITATION</h4>
+        <h2>Overflowing Trash Can</h2>
+        <p>The bins near the library entrance are overflowing.</p>
+        <span class="location">Library, Entrance</span>
+
+        <div class="bottom">
+          <span class="status">PUBLIC</span>
+          <small>01/25/2026</small>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  © 2026 Campus Issues Report System – Improving Campus Life Together
+</div>
