@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-new-report',
@@ -11,40 +12,47 @@ import { Router } from '@angular/router';
 })
 export class NewReportComponent {
 
-  // form fields
-  headline: string = '';
-  category: string = 'Facilities';
-  priority: string = 'Personal';
-  location: string = '';
-  description: string = '';
-  anonymous: boolean = false;
-  name: string = '';
+  headline = '';
+  category = 'Facilities';
+  location = '';
+  description = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private api: ApiService) {}
 
   submitReport() {
+    const user = this.api.getUser();
 
-    // validation
-    if (!this.headline || !this.location || !this.description) {
-      alert('Please fill in all required fields');
+    if (!user) {
+      alert('Session expired. Please login again.');
+      this.router.navigate(['/']);
       return;
     }
-    this.router.navigate(['/submit']);
+
+    if (!this.headline || !this.location || !this.description) {
+      alert('Please fill in all fields.');
+      return;
+    }
 
     const report = {
       headline: this.headline,
       category: this.category,
-      priority: this.priority,
       location: this.location,
       description: this.description,
-      postedBy: this.anonymous ? 'Anonymous' : this.name,
-      date: new Date()
+      postedBy: user.fullName,
+      userId: user.id
     };
 
-    console.log(report);
-    alert('Report submitted successfully!');
-    this.router.navigate(['/dashboard']);
+    console.log('Submitting:', report);
+
+    this.api.createReport(report).subscribe((res: any) => {
+      if (res.success) {
+        this.router.navigate(['/submit']);
+      } else {
+        alert('Failed: ' + (res.message || 'Unknown error'));
+      }
+    });
   }
+
   cancel() {
     this.router.navigate(['/dashboard']);
   }

@@ -1,69 +1,67 @@
 <div class="header">
-    <div class ="logo-section">
-        <img src="campus_issue.png" alt="logo">
-        <span>CampusCare</span>
-    </div>
+  <div class="logo-section">
+    <img src="campus_issue.png" alt="logo">
+    <span>CampusCare</span>
+  </div>
 </div>
 
-<div class="container">
+<div class="page-wrap">
 
-  <!-- LEFT SIDE -->
-  <div class="left">
-    <div class="profile">
+  <div class="sidebar">
+    <div class="profile-card">
       <div class="avatar"></div>
-      <h3>Chleo Monteza</h3>
-      <p>cmmonteza64178@liceo.edu.ph</p>
-
-      <button (click)="logout()">LOG OUT</button>
+      <h3>{{ user?.fullName }}</h3>
+      <p class="email">{{ user?.email }}</p>
+      <p class="meta" *ngIf="user?.course">{{ user?.course }}</p>
+      <p class="meta" *ngIf="user?.year">{{ user?.year }}</p>
+      <button class="btn-outline" (click)="goProfile()">Edit Profile</button>
+      <button class="btn-solid" (click)="logout()">Log Out</button>
     </div>
   </div>
 
-  <!-- RIGHT SIDE -->
-  <div class="right">
-
-    <div class="top">
+  <div class="content">
+    <div class="content-header">
       <div>
-        <h1>Campus Issue Log</h1>
-        <p>Track the progress of issues you have submitted.</p>
+        <h1>My Reports</h1>
+        <p>Track all your submitted campus issues</p>
       </div>
-
-      <button routerLink="/new-report">+ New Report</button>
+      <button class="new-btn" (click)="goNewReport()">+ New Report</button>
     </div>
 
-    <div class="cards">
-
-      <!-- CARD 1 -->
-      <div class="card">
-        <h4>FACILITIES</h4>
-        <h2>Broken AC in Room 302</h2>
-        <p>The air conditioning unit is making a loud noise and not cooling.</p>
-        <span class="location">NAC Building, 3rd Floor</span>
-
-        <div class="bottom">
-          <span class="status">PUBLIC</span>
-          <small>01/25/2026</small>
-        </div>
-      </div>
-
-      <!-- CARD 2 -->
-      <div class="card">
-        <h4>SANITATION</h4>
-        <h2>Overflowing Trash Can</h2>
-        <p>The bins near the library entrance are overflowing.</p>
-        <span class="location">Library, Entrance</span>
-
-        <div class="bottom">
-          <span class="status">PUBLIC</span>
-          <small>01/25/2026</small>
-        </div>
-      </div>
-
+    <div class="filters">
+      <button (click)="filterReports('All')"        [class.active]="activeFilter==='All'">ALL</button>
+      <button (click)="filterReports('Facilities')" [class.active]="activeFilter==='Facilities'">FACILITIES</button>
+      <button (click)="filterReports('Sanitation')" [class.active]="activeFilter==='Sanitation'">SANITATION</button>
+      <button (click)="filterReports('Safety')"     [class.active]="activeFilter==='Safety'">SAFETY</button>
+      <button (click)="filterReports('Technology')" [class.active]="activeFilter==='Technology'">TECHNOLOGY</button>
     </div>
 
+    <div class="cards" *ngIf="filteredReports.length > 0; else noReports">
+      <div class="card" *ngFor="let r of filteredReports">
+        <div class="card-top">
+          <span class="category-tag">{{ r.category }}</span>
+          <span class="status-tag" [ngClass]="{
+            'st-pending':  r.status === 'Pending',
+            'st-progress': r.status === 'In Progress',
+            'st-resolved': r.status === 'Resolved'
+          }">{{ r.status }}</span>
+        </div>
+        <h2>{{ r.headline }}</h2>
+        <p class="desc">{{ r.description }}</p>
+        <div class="location">📍 {{ r.location }}</div>
+        <div class="card-date">{{ r.date | date:'MMMM d, yyyy' }}</div>
+      </div>
+    </div>
+
+    <ng-template #noReports>
+      <div class="empty-state">
+        <div class="empty-icon">📋</div>
+        <h3>No reports yet</h3>
+        <p>You haven't submitted any reports. Click <strong>+ New Report</strong> to get started.</p>
+      </div>
+    </ng-template>
   </div>
 
 </div>
 
-<div class="footer">
-  © 2026 Campus Issues Report System – Improving Campus Life Together
-</div>
+<div class="footer">© 2026 Campus Issues Report System – Improving Campus Life Together</div>

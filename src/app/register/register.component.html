@@ -1,26 +1,35 @@
-<div class="container">
+<div class="page">
 
-  <!-- LEFT -->
   <div class="left">
-    <h1>CampusCare</h1>
-    <p>
-      Report facilities, safety, or technology issues instantly.
-      Track progress, stay updated, and help maintain a safer,
-      cleaner learning environment for everyone.
-    </p>
+    <div class="brand">
+
+      <h1>CampusCare</h1>
+    </div>
+    <p>Report facilities, safety, or technology issues instantly. Track progress, stay updated, and help maintain a safer, cleaner learning environment for everyone.</p>
   </div>
 
-  <!-- RIGHT -->
   <div class="right">
     <div class="card">
       <h2>Create Account</h2>
-      <small>Join the reporting network</small>
+      <small>Join the campus reporting network</small>
 
       <label>Full Name</label>
-      <input type="text" [(ngModel)]="fullName" placeholder="Your Name">
+      <input type="text" [(ngModel)]="fullName" placeholder="Your full name">
 
       <label>University Email</label>
-      <input type="email" [(ngModel)]="email" placeholder="user@university.edu.ph">
+      <input type="email" [(ngModel)]="email" placeholder="user@liceo.edu.ph">
+
+      <label>Course</label>
+      <input type="text" [(ngModel)]="course" placeholder="e.g. BS Computer Science">
+
+      <label>Year Level</label>
+      <select [(ngModel)]="year">
+        <option value="">Select Year Level</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+        <option value="4th Year">4th Year</option>
+      </select>
 
       <label>Password</label>
       <input type="password" [(ngModel)]="password" placeholder="••••••••">
@@ -28,20 +37,16 @@
       <label>Confirm Password</label>
       <input type="password" [(ngModel)]="confirmPassword" placeholder="••••••••">
 
-      <button [disabled]="!fullName || !email || !password || !confirmPassword || password !== confirmPassword" (click)="createAccount()">Create Account</button>
-
-         <p class="error" *ngIf="password && confirmPassword && password !== confirmPassword">
-          Passwords do not match.
-         </p>
-
-      <p class="signup">
-        Already have an account? <span routerLink="/">Sign In</span>
+      <p class="error" *ngIf="password && confirmPassword && password !== confirmPassword">
+        Passwords do not match.
       </p>
+
+      <button (click)="createAccount()">Create Account</button>
+
+      <p class="signup">Already have an account? <span routerLink="/">Sign In</span></p>
     </div>
   </div>
 
 </div>
 
-<div class="footer">
-  © 2026 Campus Issues Report System – Improving Campus Life Together
-</div>
+<div class="footer">© 2026 Campus Issues Report System – Improving Campus Life Together</div>

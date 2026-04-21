@@ -1,14 +1,14 @@
-<div class="header">
-    <div class ="logo-section">
-        <img src="campus_issue.png" alt="logo">
-        <span>CampusCare</span>
-    </div>
+<div class="page-header">
+  <div class="logo-section">
+    <img src="campus_issue.png" alt="logo">
+    <span>CampusCare</span>
+  </div>
 </div>
 
 <div class="container">
-
   <div class="card">
-    <div class="header">
+
+    <div class="card-header">
       <h2>Report Campus Issue</h2>
       <p>Please provide accurate details to help us address the issue quickly.</p>
     </div>
@@ -18,39 +18,19 @@
       <label>Issue Headline</label>
       <input type="text" [(ngModel)]="headline" placeholder="e.g., Leaking water pipe in 1st Floor restroom">
 
-      <div class="row">
-        <div>
-          <label>Category</label>
-          <select [(ngModel)]="category">
-            <option value="Facilities">Facilities</option>
-            <option value="Sanitation">Sanitation</option>
-            <option value="Safety">Safety</option>
-            <option value="Technology">Technology</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Priority</label>
-          <select [(ngModel)]="priority">
-            <option value="Personal">Personal</option>
-            <option value="Public">Public</option>
-            <option value="Urgent">Urgent</option>
-          </select>
-        </div>
-      </div>
+      <label>Category</label>
+      <select [(ngModel)]="category">
+        <option value="Facilities">Facilities</option>
+        <option value="Sanitation">Sanitation</option>
+        <option value="Safety">Safety</option>
+        <option value="Technology">Technology</option>
+      </select>
 
       <label>Specific Location</label>
       <input type="text" [(ngModel)]="location" placeholder="e.g., Science Lab A, Near the window">
 
       <label>Detailed Description</label>
       <textarea [(ngModel)]="description" placeholder="Describe what is wrong..."></textarea>
-
-      <div class="checkbox">
-        <input type="checkbox" [(ngModel)]="anonymous">
-        <span>Submit this report anonymously</span>
-      </div>
-
-      <small>Your name will not be shown to administrators or public logs.</small>
 
       <div class="buttons">
         <button class="cancel" (click)="cancel()">Cancel</button>
@@ -59,9 +39,8 @@
 
     </div>
   </div>
-
 </div>
 
 <div class="footer">
-  c 2026 Campus Issues Report System - Improving Campus Life Together
+  © 2026 Campus Issues Report System – Improving Campus Life Together
 </div>

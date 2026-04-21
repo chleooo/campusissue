@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -11,49 +12,77 @@ import { CommonModule } from '@angular/common';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private router: Router) {}
-
-  reports: any[] = [
-    {
-      name: 'John Doe',
-      category: 'Facilities',
-      desc: 'Broken AC in Room 302',
-      location: 'Engineering Building',
-      priority: 'Public',
-      status: 'In Progress',
-      date: '1/24/2026'
-    },
-    {
-      name: 'Anonymous',
-      category: 'Safety',
-      desc: 'Faulty Wiring in Hallway',
-      location: 'Main Cafeteria',
-      priority: 'Urgent',
-      status: 'Resolved',
-      date: '1/24/2026'
-    }
-  ];
-
+  reports: any[] = [];
   filteredReports: any[] = [];
-  activeFilter: string = 'All';
+  activeFilter = 'All';
+  user: any;
+
+  constructor(
+    private api: ApiService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.filteredReports = this.reports;
+    this.user = this.api.getUser();
+
+    if (!this.user) {
+      this.router.navigate(['/']);
+      return;
+    }
+
+    this.loadReports();
   }
 
-  filterReports(category: string) {
-    this.activeFilter = category;
+  loadReports() {
+    this.api.getReports().subscribe({
+      next: (res: any) => {
+        this.reports = Array.isArray(res) ? res : [];
+        this.applyFilter();
+      },
+      error: (err) => {
+        console.error('Failed to load reports', err);
+        this.reports = [];
+      }
+    });
+  }
 
-    if (category === 'All') {
-      this.filteredReports = this.reports;
-    } else {
-      this.filteredReports = this.reports.filter(
-        r => r.category === category
-      );
-    }
+  applyFilter() {
+    this.filteredReports =
+      this.activeFilter === 'All'
+        ? [...this.reports]
+        : this.reports.filter(r => r.category === this.activeFilter);
+  }
+
+  filterReports(cat: string) {
+    this.activeFilter = cat;
+    this.applyFilter();
+  }
+
+  // ✅ THIS IS CORRECT NAVIGATION
+  goStatus(report: any) {
+    this.router.navigate(['/update-status', report.id]);
+  }
+
+  deleteReport(id: number) {
+    if (!confirm('Delete this report?')) return;
+
+    this.reports = this.reports.filter(r => r.id !== id);
+    this.applyFilter();
+
+    this.api.deleteReport(id).subscribe({
+      error: () => {
+        alert('Delete failed');
+        this.loadReports();
+      }
+    });
+  }
+
+  goProfile() {
+    this.router.navigate(['/edit-profile']);
   }
 
   logout() {
+    this.api.logout();
     this.router.navigate(['/']);
   }
 }

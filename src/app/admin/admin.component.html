@@ -5,83 +5,88 @@
   </div>
 </div>
 
-<div class="container">
+<div class="page-wrap">
 
   <div class="sidebar">
-    <div class="profile">
+    <div class="profile-card">
       <div class="avatar"></div>
-      <h3>Chleo Monteza</h3>
-      <p>cnmonteza64178@liceo.edu.ph</p>
-      <button (click)="logout()">LOG OUT</button>
+      <h3>{{ user?.fullName }}</h3>
+      <p class="email">{{ user?.email }}</p>
+      <button class="btn-outline" (click)="goProfile()">Edit Profile</button>
+      <button class="btn-solid" (click)="logout()">Log Out</button>
     </div>
   </div>
 
   <div class="content">
-
-    <h1>Admin Control Panel</h1>
-    <p class="subtitle">Manage all campus issue reports.</p>
-
-    <div class="filters">
-      <button (click)="filterReports('All')" [class.active]="activeFilter === 'All'">ALL</button>
-      <button (click)="filterReports('Facilities')" [class.active]="activeFilter === 'Facilities'">FACILITIES</button>
-      <button (click)="filterReports('Sanitation')" [class.active]="activeFilter === 'Sanitation'">SANITATION</button>
-      <button (click)="filterReports('Safety')" [class.active]="activeFilter === 'Safety'">SAFETY</button>
-      <button (click)="filterReports('Technology')" [class.active]="activeFilter === 'Technology'">TECHNOLOGY</button>
+    <div class="content-header">
+      <h1>Admin Control Panel</h1>
+      <p>Manage all campus issue reports and system updates.</p>
     </div>
 
-    <div class="table">
+    <div class="filters">
+      <button (click)="filterReports('All')"        [class.active]="activeFilter==='All'">ALL</button>
+      <button (click)="filterReports('Facilities')" [class.active]="activeFilter==='Facilities'">FACILITIES</button>
+      <button (click)="filterReports('Sanitation')" [class.active]="activeFilter==='Sanitation'">SANITATION</button>
+      <button (click)="filterReports('Safety')"     [class.active]="activeFilter==='Safety'">SAFETY</button>
+      <button (click)="filterReports('Technology')" [class.active]="activeFilter==='Technology'">TECHNOLOGY</button>
+    </div>
 
-      <div class="table-row header-row">
-        <span>REPORTED BY:</span>
+    <div class="table-card">
+      <div class="table-label">
+        {{ activeFilter === 'All' ? 'ALL RECENT REPORTS' : activeFilter.toUpperCase() + ' REPORTS' }}
+      </div>
+
+      <div class="table-head">
+        <span>REPORTED BY</span>
         <span>DESCRIPTION</span>
-        <span>PRIORITY</span>
+        <span>STATUS</span>
         <span>ACTION</span>
       </div>
 
-      <div class="table-row" *ngFor="let report of filteredReports">
+      <div class="table-body">
 
-        <div class="user">
-          <div class="circle">
-            {{ report.name ? report.name[0] : '?' }}
+        <div class="table-row" *ngFor="let report of filteredReports">
+
+          <div class="reporter">
+            <div class="circle">{{ report.postedBy ? report.postedBy[0].toUpperCase() : '?' }}</div>
+            <div class="reporter-info">
+              <strong>{{ report.postedBy }}</strong>
+              <small>{{ report.date | date:'M/d/yyyy' }}</small>
+            </div>
           </div>
-          <div>
-            <strong>{{report.name}}</strong>
-            <small>{{report.date}}</small>
+
+          <div class="description">
+            <div class="desc-top">
+              <strong>{{ report.headline }}</strong>
+              <!-- ✅ Show category tag when in ALL view so admins aren't confused -->
+              <span class="cat-tag" *ngIf="activeFilter === 'All'">{{ report.category }}</span>
+            </div>
+            <small>{{ report.location }}</small>
           </div>
+
+          <div class="status-col">
+            <span class="status-badge" [ngClass]="{
+              'badge-pending':  report.status === 'Pending',
+              'badge-progress': report.status === 'In Progress',
+              'badge-resolved': report.status === 'Resolved'
+            }">{{ report.status }}</span>
+          </div>
+
+          <div class="actions">
+            <button class="act-btn edit" (click)="goStatus(report)" title="Edit Status">✏️</button>
+            <button class="act-btn del"  (click)="deleteReport(report.id)" title="Delete">🗑</button>
+          </div>
+
         </div>
 
-        <div>
-          <strong>{{report.desc}}</strong>
-          <small>{{report.location}}</small>
-        </div>
-
-        <div class="badges">
-          <span [ngClass]="{
-            'public': report.priority === 'Public',
-            'urgent': report.priority === 'Urgent'
-          }">
-            {{report.priority}}
-          </span>
-
-          <span [ngClass]="{
-            'progress': report.status === 'In Progress',
-            'resolved': report.status === 'Resolved'
-          }">
-            {{report.status}}
-          </span>
-        </div>
-
-        <div class="actions">
-          ✏️ 🗑
+        <div class="empty" *ngIf="filteredReports.length === 0">
+          No reports found in this category.
         </div>
 
       </div>
-
     </div>
-
   </div>
+
 </div>
 
-<div class="footer">
-  c 2026 Campus Issues Report System - Improving Campus Life Together
-</div>
+<div class="footer">© 2026 Campus Issues Report System – Improving Campus Life Together</div>

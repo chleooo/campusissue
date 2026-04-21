@@ -1,0 +1,52 @@
+<div class="header">
+  <div class="logo">
+    <img src="campus_issue.png" alt="logo">
+    <span>CampusCare</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-title">Edit Profile</div>
+
+    <div class="form">
+
+      <label>Full Name</label>
+      <input type="text" [(ngModel)]="fullName" placeholder="Your full name">
+
+      <ng-container *ngIf="!isAdmin">
+        <label>Course</label>
+        <input type="text" [(ngModel)]="course" placeholder="e.g. BS Computer Science">
+
+        <label>Year Level</label>
+        <select [(ngModel)]="year">
+          <option value="">Select Year Level</option>
+          <option value="1st Year">1st Year</option>
+          <option value="2nd Year">2nd Year</option>
+          <option value="3rd Year">3rd Year</option>
+          <option value="4th Year">4th Year</option>
+        </select>
+      </ng-container>
+
+      <hr>
+
+      <label>New Password <small>(leave blank to keep current)</small></label>
+      <input type="password" [(ngModel)]="password" placeholder="New password">
+
+      <label>Confirm New Password</label>
+      <input type="password" [(ngModel)]="confirmPassword" placeholder="Confirm new password">
+
+      <p class="error" *ngIf="password && confirmPassword && password !== confirmPassword">
+        Passwords do not match.
+      </p>
+
+      <div class="buttons">
+        <button class="cancel" (click)="cancel()">Cancel</button>
+        <button class="save"   (click)="save()">Save Changes</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="footer">© 2026 Campus Issues Report System – Improving Campus Life Together</div>

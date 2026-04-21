@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -11,37 +12,35 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent {
 
-  email: string = '';
-  password: string = '';
-  role: string = '';
+  email = '';
+  password = '';
+  role = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private api: ApiService) {}
 
   goDashboard() {
-
-    // CHECK TANAN FIELDS
-    if (!this.email || !this.password || !this.role) {
-      alert('Please fill all fields');
+    if (!this.email || !this.password) {
+      alert('Please fill all fields.');
       return;
     }
 
-    // ADMIN LOGIN
-    if (
-      this.role === 'admin' &&
-      this.email === 'admin@gmail.com' &&
-      this.password === 'admin123'
-    ) {
-      this.router.navigate(['/admin']);
+    // ✅ Only allow @liceo.edu.ph emails
+    if (!this.email.toLowerCase().endsWith('@liceo.edu.ph')) {
+      alert('Only @liceo.edu.ph email addresses are allowed.');
+      return;
     }
 
-    // STUDENT LOGIN
-    else if (this.role === 'student') {
-      this.router.navigate(['/dashboard']);
-    }
-
-    // INVALID
-    else {
-      alert('Invalid admin credentials');
-    }
+    this.api.login({ email: this.email, password: this.password }).subscribe((res: any) => {
+      if (res.success) {
+        this.api.setUser(res.user);
+        if (res.user.role === 'admin') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/dashboard']);
+        }
+      } else {
+        alert('Invalid email or password.');
+      }
+    });
   }
 }
